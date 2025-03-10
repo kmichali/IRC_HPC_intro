@@ -1,9 +1,13 @@
+#!/bin/bash
+
 #PBS -l walltime=00:10:00
 #PBS -l select=1:ncpus=1:mem=1gb
 #PBS -J 1-5
 
 cd $PBS_O_WORKDIR
+ml Python
+
 INPUT=$(ls -1 *.txt | head -n $PBS_ARRAY_INDEX | tail -n 1)
-python3 filesize.py $INPUT > size_${INPUT}
+python3 filesize.py $INPUT > size_$INPUT
 
 
